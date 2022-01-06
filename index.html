@@ -4,7 +4,7 @@
     <div id="version" />
 </body>
 <script>
-    fetch('~/static/version.txt')
+    fetch('https://masonanders.github.io/spa-reload-experiment/static/version.txt')
         .then(file => file.text())
         .then(text => document.getElementById('version').innerHTML = text)
 </script>
