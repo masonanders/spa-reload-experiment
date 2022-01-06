@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<body>
+    <div>This is a test</div>
+    <div id="version" />
+</body>
+<script>
+    fetch('~/version.txt')
+        .then(file => file.text())
+        .then(text => document.getElementById('version').innerHTML = text)
+</script>
