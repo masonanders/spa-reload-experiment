@@ -10,17 +10,18 @@
     </div>
 </body>
 <script>
-    fetch('https://masonanders.github.io/spa-reload-experiment/version.txt')
+    fetch('version.txt')
         .then(file => file.text())
         .then(text => window.currentVersion = text)
         .then(text => document.getElementById('version').innerText = text)
-</script>
+        .catch(console.log)
+    </script>
 <script>
     const interval = window.setInterval(() => {
         fetch(
-            'https://masonanders.github.io/spa-reload-experiment/version.txt',
+            'version.txt',
             { cache: 'no-cache' }
-        )
+            )
             .then(file => file.text())
             .then(text => {
                 if (text !== window.currentVersion) {
@@ -28,5 +29,6 @@
                     window.clearInterval(interval)
                 }
             })
+            .catch(console.log)
     }, 1000 * 30)
 </script>
