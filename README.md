@@ -1,0 +1,3 @@
+# File-Based New-Version Detection Experiment
+
+This is a proof-of-concept on a system to prompt users to reload the client when a new version is detected. This is especially important with single-page applications where changes may be deployed but will not be reflected on the client instance until the page has been reloaded. The idea is that we serve a file containing the version identification, ideally created autonomously at build-time, and periodically poll the server (bypassing the browser's cached version of that file) for that file. If the file's contents change, an element will be rendered prompting the user to reload the page so that any other changes to the application implementation may be reflected on the client instance.
