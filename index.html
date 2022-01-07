@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <body>
-    <div>This is a test</div>
-    <div id="version" />
+    <div>
+        <div>This is a test</div>
+        <div id="version" />
+    </div>
+    <div id="reload-prompt" style="visibility: hidden; position: absolute; right: 0; bottom: 0; padding: 32px; margin: 16px; box-shadow: 1px 1px 8px grey;">
+        <div style="margin-bottom: 8px;">A new veresion is available, please reload.</div>
+        <button onclick="window.location.reload(true)">Reload</button>
+    </div>
 </body>
 <script>
     fetch('https://masonanders.github.io/spa-reload-experiment/static/version.txt')
         .then(file => file.text())
-        .then(text => document.getElementById('version').innerHTML = text)
+        .then(text => window.currentVersion = text)
+        .then(text => document.getElementById('version').innerText = text)
+</script>
+<script>
+    const interval = window.setInterval(() => {
+        fetch('https://masonanders.github.io/spa-reload-experiment/static/version.txt')
+            .then(file => file.text())
+            .then(text => {
+                if (text !== window.currentVersion) {
+                    document.getElementById('reload-prompt').style.visibility = 'visible'
+                    window.clearInterval(interval)
+                }
+            })
+    }, 1000 * 30)
 </script>
