@@ -10,14 +10,14 @@
     </div>
 </body>
 <script>
-    fetch('https://masonanders.github.io/spa-reload-experiment/static/version.txt')
+    fetch('https://masonanders.github.io/spa-reload-experiment/version.txt')
         .then(file => file.text())
         .then(text => window.currentVersion = text)
         .then(text => document.getElementById('version').innerText = text)
 </script>
 <script>
     const interval = window.setInterval(() => {
-        fetch('https://masonanders.github.io/spa-reload-experiment/static/version.txt')
+        fetch('https://masonanders.github.io/spa-reload-experiment/version.txt')
             .then(file => file.text())
             .then(text => {
                 if (text !== window.currentVersion) {
