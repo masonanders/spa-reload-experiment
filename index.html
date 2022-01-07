@@ -17,7 +17,10 @@
 </script>
 <script>
     const interval = window.setInterval(() => {
-        fetch('https://masonanders.github.io/spa-reload-experiment/version.txt')
+        fetch(
+            'https://masonanders.github.io/spa-reload-experiment/version.txt',
+            { cache: 'reload' }
+        )
             .then(file => file.text())
             .then(text => {
                 if (text !== window.currentVersion) {
